@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-20.04                                    # radar: overdue (retired 2025-04-15)
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
-      - uses: actions/cache@v2                               # radar: overdue (2025-03-01)
+      - uses: actions/cache@8492260343ad570701412c2f464a5877dc76bace  # radar: overdue (2025-03-01) v2
         with:
           path: ~/.cache
           key: build-${{ github.sha }}
       - run: echo "building"
-      - uses: actions/upload-artifact@v3                     # radar: overdue (2025-01-30)
+      - uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5  # radar: overdue (2025-01-30) v3
         with:
           name: dist
           path: dist/
@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-22.04                                    # radar: urgent (brownout 2026-09-17)
     needs: linux-old
     steps:
-      - uses: actions/download-artifact@v3                   # radar: overdue (2025-01-30)
+      - uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a  # radar: overdue (2025-01-30) v3
         with:
           name: dist
       - run: echo "packaging"
