@@ -10,3 +10,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
       - run: echo "building ap-lab-messy"
+# ActionsPlane live-validation Stage A trigger 2026-07-24T09:12Z
