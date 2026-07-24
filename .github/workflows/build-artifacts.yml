@@ -1,0 +1,34 @@
+name: build-artifacts
+# ActionsPlane demo: exercises the Deprecation Radar (W8). Deliberately uses runner
+# images and action majors GitHub has retired or scheduled for removal.
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  linux-old:
+    runs-on: ubuntu-20.04                                    # radar: overdue (retired 2025-04-15)
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262  # v4
+      - uses: actions/cache@v2                               # radar: overdue (2025-03-01)
+        with:
+          path: ~/.cache
+          key: build-${{ github.sha }}
+      - run: echo "building"
+      - uses: actions/upload-artifact@v3                     # radar: overdue (2025-01-30)
+        with:
+          name: dist
+          path: dist/
+  linux-lts:
+    runs-on: ubuntu-22.04                                    # radar: urgent (brownout 2026-09-17)
+    needs: linux-old
+    steps:
+      - uses: actions/download-artifact@v3                   # radar: overdue (2025-01-30)
+        with:
+          name: dist
+      - run: echo "packaging"
+  mac:
+    runs-on: macos-14                                        # radar: upcoming (2026-11-02)
+    steps:
+      - run: echo "mac build"
